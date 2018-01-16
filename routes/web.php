@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/products', 'ProductController@allProducts');
+Route::get('/create', function() {
+    return view('create-product');
 });
+
+Route::post('/insert','ProductController@add');
+Route::get('/update/{id}', 'ProductController@update');
+
+Route::post('/edit/{id}', 'ProductController@edit');
+Route::get('/view/{id}', 'ProductController@getProduct');
+Route::delete('/delete/{id}', 'ProductController@delete');
