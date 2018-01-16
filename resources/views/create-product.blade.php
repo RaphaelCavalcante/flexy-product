@@ -1,7 +1,7 @@
+@include('inc.header')
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <form class="form-horizontal" method="POST" action="{{url('/insert') }}">
+        
+            <form class="form-group" method="POST" action="{{url('/insert') }}">
                 {{csrf_field()}}
                 @if(count($errors)>0)
                     @foreach($errors->all() as $error)
@@ -10,21 +10,20 @@
                         </div>
                     @endforeach
                 @endif
-                <label for="inputTitle" class="col-lg-2 control-label">Title</title>
-                <div class="col-lg-10">
-                    <input type="text" name="title" class="form-control" id="inputEmail" placeholder="Title">
-                </div>
-                <lable for="inputDescription" class="col-lg-2 control-label">Description</title>
-                <div class="col-lg-10">
-                    <textarea id="inputDescription" name="description" class="form-control" placeholder="Description"></textarea>
-                </div>
                 <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                        <button type="Submit" class="btn btn-primary">Submit</button>
-                        <a class="btn btn-primary" href="{{url('/')}}">Back</a>
-                    </div>
+                <label for="productImage" class="control-label"> Product Picture </label>
+                <div class="product-picture">
+                    
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
+                <label for="inputTitle" class="control-label">Title</title>
+                <input class="form-control" type="text" name="title" class="form-control" id="inputEmail" placeholder="Title">
+                
+                <label for="inputDescription" class="control-label">Description</title>
+                
+                <textarea class="form-control" id="inputDescription" name="description" class="form-control" placeholder="Description"></textarea>
+                 
+            </div>
+                <button type="Submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-primary" href="{{url('/')}}">Back</a>       
+                </div>
+            </form>    
