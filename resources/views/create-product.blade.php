@@ -13,7 +13,7 @@
                 <div class="form-group">
                 <label for="productImage" class="control-label"> Product Picture </label>
                 <div class="product-picture">
-                    
+                    <input type="file" name="product_image" id="product_image">
                 </div>
                 <label for="inputTitle" class="control-label">Title</title>
                 <input class="form-control" type="text" name="title" class="form-control" id="inputEmail" placeholder="Title">
