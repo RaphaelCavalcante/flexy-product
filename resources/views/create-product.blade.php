@@ -26,11 +26,11 @@
                     <input class="form-control" type="number" name="stock" placeholder="0">
 
                     <label for="inputTags" class="control-label">Tags</label>
-                    <select2 id="inputTags" class="form-control" name="product_tags[]" class="form-control input-lg" multiple> 
+                    <select id="inputTags" class="form-control" name="product_tags[]" class="form-control input-lg" multiple> 
                         @foreach($tags as $tag)
                             <option class="form-option" value="{{$tag->id}}">{{$tag->name}}</option>
                         @endforeach
-                    </select2>
+                    </select>
                 </div>
                 
                     <span> Ten most used tags: 

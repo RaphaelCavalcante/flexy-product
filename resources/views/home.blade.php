@@ -11,8 +11,9 @@
                 @if(count($products) > 0)
                 @foreach($products->all() as $product)
                 
-                <div class="card mb-3" style="max-height: 100; max-width: 100rem;">
-                    <img class="img-fluid" src="{{Storage::url($product->image)}}" style="height: 200px; width: 200px; display: block;">
+                <div class="card mb-3" style="max-height: 100; max-width: 80rem;">
+                    <h4 class="card-text">{{ $product->title}}</h4>
+                    <img class="img-fluid" src="{{Storage::url($product->image)}}" style="height: 150px; width: 150px; display: block;">
                     <div class="overlay">
                             <ul class="list-inline pull-right">
                                 <li class="list-inline-item">
@@ -37,9 +38,8 @@
                                     </div>
                                 </li>
                             </ul>
-                            <h4 class="card-text">{{ $product->title}}</h4>
-                            <div class="card-body text-primary">
-                            </div>
+                            
+                            
                         
                     </div>
                     
