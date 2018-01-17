@@ -19,9 +19,11 @@ class ProductController extends Controller
         $product  = new Product;
         $product->title = $request->input('title');
         $product->description = $request->input('description');
-        $product->image = public_path('uploaded_images').'/'.$request->file('product_image')->getClientOriginalName();
+        $product->image = public_path('uploaded_images').'/'.$request->file('product_image');
         $product->stock = 3;
-        print_r($product);
+        print_r('<pre>');
+        print_r($request);
+        print_r('<pre>');
         //$product->save();
        // return redirect('/products')->with('info','Product saved successfully!');
         
