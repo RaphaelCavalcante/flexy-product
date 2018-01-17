@@ -1,0 +1,72 @@
+.container{
+    padding-top: 40px;
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(223, 215, 202, 0.75);
+    float:left;
+    margin-right: 20px;
+    border-radius: 0.25rem;
+  }
+  .product-list {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      height: auto;
+  }
+  .page-header{
+      position: fixed;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+  }
+  .card:hover .overlay {
+    display: block;
+    background: rgba(0, 0, 0, .3);
+  }
+  img {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    left: 0;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: black;
+    z-index: 1;
+    transition: top .5s ease;
+  }
+  .button {
+    position: relative;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+.button a {
+    color: black;
+    z-index: 1;
+}
+.card:hover .title {
+    top: 90px;
+  }
+  .card:hover .button {
+    opacity: 1;
+  }
