@@ -17,6 +17,14 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->string('name');
         });
+        
+        Schema::create('product_tag', function(Blueprint $table){
+            $table->integer('product_id')->unsigned()->index();
+            $table->integer('tag_id')->unsigned()->index();
+            
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,6 +34,7 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::drop('product_tag');
+        Schema::drop('tags');
     }
 }

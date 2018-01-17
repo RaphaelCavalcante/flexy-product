@@ -10,37 +10,42 @@
             <div class="product-list">
                 @if(count($products) > 0)
                 @foreach($products->all() as $product)
-                <div class="card border-primary mb-3" style="max-height: 10rem; max-width: 10rem;">
+                
+                <div class="card mb-3" style="max-height: 100; max-width: 100rem;">
+                    <img class="img-fluid" src="{{Storage::url($product->image)}}" style="height: 200px; width: 200px; display: block;">
                     <div class="overlay">
-                        <ul class="list-inline pull-right">
-                            <li class="list-inline-item">
-                                <div class="button">
-                                    <a href="/view/{{$product->id}}" title="view">
-                                        <i class="fa fa-eye" style="color:blue"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="list-inline-item">
-                                <div class="button">
-                                    <a href="#" title="edit">
-                                        <i class="fa fa-pencil" style="color:blue"></i>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="list-inline-item">
-                                <div class="button">
-                                    <a href="#" title="delete">
-                                        <i class="fa fa-close" style="color:blue"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
+                            <ul class="list-inline pull-right">
+                                <li class="list-inline-item">
+                                    <div class="button">
+                                        <a href="/view/{{$product->id}}" title="view">
+                                            <i class="fa fa-eye" style="color:blue"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="button">
+                                        <a href="/update/{{$product->id}}" title="edit">
+                                            <i class="fa fa-pencil" style="color:blue"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="button">
+                                        <a href="/delete/{{$product->id}}" title="delete">
+                                            <i class="fa fa-close" style="color:blue"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <h4 class="card-text">{{ $product->title}}</h4>
+                            <div class="card-body text-primary">
+                            </div>
+                        
                     </div>
+                    
+                    
 
-                    <div class="card-body text-primary">
-                        <span>{{$product->description}} </span>                  
-                        <span class="title">{{ $product->title}} </span>
-                    </div>
+                    
                 </div>
                 @endforeach
                 @endif
