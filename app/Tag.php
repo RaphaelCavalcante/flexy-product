@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    //
     public $timestamps = false;
     public function products() {
         return $this->belongsToMany('App\Product');
     }
+    /**
+     * ORDER THE TAGS BY USAGE
+     */
     static function mostUsed($allTags) {
         $tags = array();
         foreach($allTags as $tag){
