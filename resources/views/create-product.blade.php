@@ -39,9 +39,11 @@
                 
                     <span> Ten most used tags: 
                     @if(!empty($tags))
-                        @foreach($tags as $tag)
-                            #{{$tag->name}}
-                        @endforeach
+                        @for($i=0;$i<10;$i++)
+                            @if($tags[$i]->products->count() > 0)
+                                #{{$tags[$i]->name}}
+                            @endif
+                        @endfor
                     @else
                         <?php echo ('there are no tags avaliable') ?>
                     @endif

@@ -11,14 +11,6 @@ class Tag extends Model
     public function products() {
         return $this->belongsToMany('App\Product');
     }
-    private function cmp($a , $b){
-        $prodA = $a->products->count();
-        $prodB = $b->products->count();
-        if($prodA == $prodB){
-            return 0;
-        }
-        return ($prodA < $prodB)? -1 : 1;
-    }
     static function mostUsed($allTags) {
         $tags = array();
         foreach($allTags as $tag){

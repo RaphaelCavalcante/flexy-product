@@ -12,6 +12,8 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(App\Tag::class, 'tag_','20')->create();
-    }
+        factory(App\Tag::class, 20)->create()->each(function ($u){
+           $u->name=str_random(6);
+        });
+   }
 }
