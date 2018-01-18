@@ -26,23 +26,32 @@
                     <input class="form-control" type="number" name="stock" placeholder="0">
 
                     <label for="inputTags" class="control-label">Tags</label>
+                    @if(!empty($tags))
                     <select id="inputTags" class="form-control" name="product_tags[]" class="form-control input-lg" multiple> 
                         @foreach($tags as $tag)
                             <option class="form-option" value="{{$tag->id}}">{{$tag->name}}</option>
                         @endforeach
                     </select>
+                    @else
+                        <?php echo('There are no tags avaliable')?>
+                    @endif
                 </div>
                 
                     <span> Ten most used tags: 
-
-                    @foreach($tags as $tag)
-                        #{{$tag->name}}
-                    @endforeach
+                    @if(!empty($tags))
+                        @foreach($tags as $tag)
+                            #{{$tag->name}}
+                        @endforeach
+                    @else
+                        <?php echo ('there are no tags avaliable') ?>
+                    @endif
                     </span>
-                
-                <!-- {{$tag->name}} -->
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{url('/')}}">Back</a>       
-                    <button type="Submit" class="btn btn-primary">Submit</button>
+                   @if(!empty($tags))
+                        <button type="Submit" class="btn btn-primary">Submit</button>
+                    @else
+                    <button type="Submit" class="btn btn-primary" disabled>Submit</button>
+                    @endif
                 </div>
             </form>    
