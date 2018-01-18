@@ -10,26 +10,25 @@ class ProductController extends Controller
 {
     public function allProducts() {
         $products = Product::all();
-        // $productArray = array();
-        // foreach($products as $product){
-        //     $product->image = str_replace('\\','afasdf ', $product->image);
-        // }
         return view('home', ['products' => $products]);
     }
-    
-    public function add(Request $request) {
+    private function setProductData ($product, $request) {
         $request->validate([
             'title'=>'required',
             'description'=>'required',
+            'product_image' => 'required'
         ]);
         $request->validate(['product_image'=> 'image|mimes:jpeg,png,gif|max:5000']);
         
-        $product  = new Product;
         $product->title = $request->input('title');
         $product->description = $request->input('description');
         $product->image = $request->file('product_image')->store('public');
         $product->stock = $request->input('stock');
-        
+
+        return $product;
+    }
+    public function add(Request $request) {
+        $product = $this->setProductData(new Product, $request);
         $product->save();
         $product->tags()->attach($request->input('product_tags'));
        return redirect('/')->with('info','Product saved successfully!');
@@ -47,23 +46,13 @@ class ProductController extends Controller
     public function edit($id, Request $request) {
         $this->validate($request,[
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'product_image'=>'required'
         ]);
-        $data = array(
-            'title' => $request->input('title'),
-            'description'=> $request->input('description'),
-            'product_image' => $request->file('product_image')->store('public'),
-            'stock' => $request->input('stock'),
-        );
-        $product = Product::where('id', $id);//->update($data);
-        /*$product->title = $request->input('title');
-        $product->description = $request->input('description');
-        $product->image = $request->file('product_image')->store('public');
-        $product->stock = $request->input('stock');
-        $product->tags()->attach($request->input('product_tags'));*/
-        $product.detach();
-        $product.update($data);
-        $product.tags().attach($request->input('product_tags'));
+        $request->validate(['product_image'=> 'image|mimes:jpeg,png,gif|max:5000']);
+        $product = $this->setProductData(Product::find($id), $request);
+        $product->tags()->sync($request->input('product_tags'));
+        $product->save();
         return redirect('/')->with('info', 'Product updated!');
     }
     public function getProduct($id) {
