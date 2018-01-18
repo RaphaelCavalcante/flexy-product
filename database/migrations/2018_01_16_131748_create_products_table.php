@@ -17,7 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('title')->require();
             $table->string('description')->nullable();
-            $table->integer('stock')->nullable();
+            $table->string('image')->require();
+            $table->integer('stock')->required()->nullable();
         });
     }
 
