@@ -8,10 +8,9 @@ use App\Tag;
 
 class ProductController extends Controller
 {
-    public function allProducts() {
-        $products = Product::all();
-        return view('home', ['products' => $products]);
-    }
+    /**
+     * Auxiliary method for reduce duplicated code
+     */
     private function setProductData ($product, $request) {
         $request->validate([
             'title'=>'required',
@@ -27,6 +26,10 @@ class ProductController extends Controller
 
         return $product;
     }
+
+    /**
+     * Create a new Product
+     */
     public function add(Request $request) {
         $product = $this->setProductData(new Product, $request);
         $product->save();
@@ -34,31 +37,20 @@ class ProductController extends Controller
        return redirect('/')->with('info','Product saved successfully!');
         
     }
-    public function update($id){
-        $product = Product::find($id);
-        $tags = Tag::all();
-        return view('update-product', ['product' => $product, 'tags' => $tags]);
-    }
-    public function create(){
-        $tags = Tag::mostUsed(Tag::all());
-        return view('create-product', ['tags'=>$tags]);
-    }
+
+    /**
+     * Edit Selected Product
+     */
+
     public function edit($id, Request $request) {
-        $this->validate($request,[
-            'title'=>'required',
-            'description'=>'required',
-            'product_image'=>'required'
-        ]);
-        $request->validate(['product_image'=> 'image|mimes:jpeg,png,gif|max:5000']);
         $product = $this->setProductData(Product::find($id), $request);
         $product->tags()->sync($request->input('product_tags'));
         $product->save();
         return redirect('/')->with('info', 'Product updated!');
     }
-    public function getProduct($id) {
-        $product = Product::find($id);
-        return view('view-product', ['product'=>$product]);
-    }
+    /**
+     * Delete Seleted Product
+     */
     public function delete($id){
         Product::where('id', $id)->delete();
         return redirect('/')->with('info', 'Product Deleted Successfully');

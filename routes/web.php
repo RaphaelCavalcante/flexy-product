@@ -15,12 +15,13 @@
 //     return view('welcome');
 // });
 
+//VIEW ROUTING
+Route::get('/', 'ViewRouterController@allProducts');
+Route::get('/create-product', 'ViewRouterController@create');
+Route::get('/update/{id}', 'ViewRouterController@update');
+Route::get('/view/{id}', 'ViewRouterController@getProduct');
 
-Route::get('/', 'ProductController@allProducts');
-Route::get('/create-product', 'ProductController@create');
 
 Route::post('/insert','ProductController@add');
-Route::get('/update/{id}', 'ProductController@update');
 Route::post('/edit/{id}', 'ProductController@edit');
-Route::get('/view/{id}', 'ProductController@getProduct');
-Route::get('/delete/{id}', 'ProductController@delete'); //change of frontend
+Route::get('/delete/{id}', 'ProductController@delete');
